@@ -14,17 +14,21 @@ public class tablero : MonoBehaviour
     public float tempSepZ = 0;// used to calculate the separation between each row
     double[,] matrix = new double[5, 5];//matriz que se debe de dibujar
     public Texture3D texture;
-    public Material newMat;
+    public Material paredMat;
+    public Material pisoMat;
+
+    public static Material matPiso;
+    public static Material matPared;
+
 
 
     // Use this for initialization
     void Start()
     {
-      //  Debug.Log(3);
-
-
+        //  Debug.Log(3);
+        matPiso = paredMat;
+        matPared = pisoMat;
         createGrid();//call the createGrid function on start
-
     }
 
     // Update is called once per frame
@@ -33,7 +37,6 @@ public class tablero : MonoBehaviour
 
     }
     
-
     void jsonToMatriz()
     {
         matrix = new double[,] { { 1, 1, 3, -1, 2 }, { 2, -1, 4, -1, 2 }, 
@@ -55,23 +58,29 @@ public class tablero : MonoBehaviour
                 plane.transform.eulerAngles = new Vector3(90f, 0, 0); //rotate the quads 90 degrees in X to face up
           //      plane.name = i.ToString() + " " + j.ToString();
 
-             //   texture = (Texture3D)Resources.Load("Assets/textures/piso");
-             //  newMat = Resources.Load("Assets/Materials/piso", typeof(Material)) as Material;
-             //   Debug.Log(newMat);
-                Color brown;
+          /*     texture = (Texture3D)Resources.Load("Assets/textures/piso");
+               newMat = Resources.Load("Assets/Materials/piso", typeof(Material)) as Material;
+            */    
+
+                //   Debug.Log(newMat);
                 if (matrix[(int)i,(int)j] <0)
                 {
                     plane.name = i.ToString() + " " + j.ToString()+ " 1";
+                    //plane.renderer.material = newMat;
 
                //     plane.GetComponent<Renderer>().material.mainTexture = texture;
                //     plane.GetComponentInChildren<Renderer>().material = newMat;
-                    //     plane.GetComponent<Renderer>().material = newMat;
-            //        Debug.Log(10);
+                        // plane.GetComponent<Renderer>().material = newMat;
+                 /*   MeshRenderer rend = GetComponent<MeshRenderer>();
+                    rend.material = newMat;
+                    */
+            //        Debug.Log(10)
 
                 }
                 else{
                //     plane.GetComponent<Renderer>().enabled = false;
                 }
+              //  plane.AddComponent<MaterialChange>();
 
                 plane.AddComponent<Hide>();
                 //      rend.material = newMat;

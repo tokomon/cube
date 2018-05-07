@@ -7,10 +7,14 @@ public class Hide : MonoBehaviour {
     void OnMouseDown()
     {
         if (gameObject.name[gameObject.name.Length-1] != '1'){
-            Destroy(gameObject);
-
+          //  Destroy(gameObject);
+            this.GetComponent<Renderer>().material = tablero.matPiso;
+            //  gameObject.GetComponent<Renderer>().enabled = false;
         }
-        //  gameObject.GetComponent<Renderer>().enabled = false;
+        else
+        {
+            this.GetComponent<Renderer>().material = tablero.matPared;
+        }
 
     }
 }
